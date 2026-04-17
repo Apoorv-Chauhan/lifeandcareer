@@ -27,7 +27,7 @@ function App() {
 
         {/* Second Page (With Layout) */}
         <Route
-          path="/next"
+          path="/verify-identity"
           element={
             <MainLayout>
               <VerifyIdentity />

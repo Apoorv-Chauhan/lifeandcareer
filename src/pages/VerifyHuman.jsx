@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const VerifyHuman = () => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
   return (
     <div className="min-h-screen bg-gray-200 flex items-center justify-center">
       {/* <div className="w-full max-w-2xl min-h-200 bg-white rounded-2xl shadow-lg overflow-hidden"> */}
@@ -23,13 +26,20 @@ const VerifyHuman = () => {
           <input
             type="email"
             placeholder="user@business.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4"
           />
 
           {/* Button */}
           <button
-            className="w-full bg-gray-400 text-white py-3 rounded-lg cursor-not-allowed"
-            onClick={() => navigate("/next")}
+            disabled={!email}
+            onClick={() => navigate("/verify-identity")}
+            className={`w-full py-3 rounded-lg text-white ${
+              email
+                ? "bg-blue-600 cursor-pointer"
+                : "bg-gray-400 cursor-not-allowed"
+            }`}
           >
             Continue
           </button>
