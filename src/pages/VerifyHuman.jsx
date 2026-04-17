@@ -27,7 +27,10 @@ const VerifyHuman = () => {
           />
 
           {/* Button */}
-          <button className="w-full bg-gray-400 text-white py-3 rounded-lg cursor-not-allowed">
+          <button
+            className="w-full bg-gray-400 text-white py-3 rounded-lg cursor-not-allowed"
+            onClick={() => navigate("/next")}
+          >
             Continue
           </button>
         </div>
