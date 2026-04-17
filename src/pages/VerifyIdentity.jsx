@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const VerifyIdentity = () => {
+  const [code, setCode] = useState("");
+  const [copied, setCopied] = useState(false);
+  const generateCode = () => {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let result = "";
+    for (let i = 0; i < 9; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  };
+  useEffect(() => {
+    setCode(generateCode());
+  }, []);
+
   return (
     <div className="w-full max-w-5xl bg-white rounded-xl shadow-md flex overflow-hidden">
       {/* LEFT SIDE */}
@@ -61,11 +75,18 @@ const VerifyIdentity = () => {
             YOUR VERIFICATION CODE
           </p>
           <h1 className="text-red-500 text-3xl font-bold tracking-widest">
-            EHGL288J9
+            {code}
           </h1>
 
-          <button className="mt-4 bg-red-600 text-white px-6 py-2 rounded-md">
-            Copy Code
+          <button
+            onClick={() => {
+              navigator.clipboard.writeText(code);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+            className="mt-4 bg-red-600 text-white px-6 py-2 rounded-md"
+          >
+            {copied ? "Copied!" : "Copy Code"}
           </button>
         </div>
 
